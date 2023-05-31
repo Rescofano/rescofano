@@ -1,5 +1,8 @@
 <meta charset="UTF-8">
 <script>
+    //  Este código se encontra imcompleto, não tem infomações suficientes
+    // para serem analisadas. Foram declaradas funções que não foram usadas
+    // e uma varíavel que somente armazena um valor aleatório de 0 a 100;
     function pulaLinha() {
 
         document.write("<br>");
@@ -10,6 +13,15 @@
         document.write(frase);
         pulaLinha();
     }
+
+    //  Função da biblioteca Math:
+    
+    //  Math.round: arredonda o número para o inteiro mais próximo.
+    Math.round(2.3); // retorna 2
+    Math.round(2.7); // retorna 3
+    
+    //  Math.random retorna uma número pseudo-aleatório no intervalo de 0 e 1.
+    Math.random(); // retorna um número aleatório. Exemplo 0.5914244631305055.
 
     var numeroPensado = Math.round(Math.random() * 100);
 </script>
