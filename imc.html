@@ -1,23 +1,47 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 
 <script>
+  //  O que será que temos aqui?
 
-    function pulaLinha(){
-        document.write("<br>");
-        document.write("<br>");
-    }
+  //  Bom aqui temos algumas declarações de funções. Funções são
+  // blocos de construção fundamentais em JavaScript. Uma função é
+  // um procedimento de JavaScript - um conjunto de instruções que
+  // executa uma tarefa ou calcula um valor. Para usar uma função,
+  // você deve defini-la em algum lugar no escopo do qual você quiser
+  // chamá-la.
 
-    function mostra(frase){
-        document.write(frase);
-        pulaLinha();
-    }
-function calculaImc(altura, peso) {
+  //  No escopo atual, foram decididas algumas funções javascript, sendo
+  // nomeadas por 'pulaLinha', 'mostra', 'calculaImc'.
+
+  function pulaLinha() {
+    //  Aqui temos uma função que escreve no documento.
+    // Como funciona essas instruções foram descritas no documento
+    // 'a_soma_das_idades.html'.
+    document.write("<br>");
+    document.write("<br>");
+  }
+
+  //  Já aqui temos uma função que recebe um argumento chamado 'frase',
+  // ao chamar essa função podemos passar um valor no lugar deste argumento.
+  // O argumento de toda função deve ser colocado dentro do parênteses ao chamar
+  // determinada função.
+
+  function mostra(frase) {
+    document.write(frase);
+    pulaLinha();
+  }
+  
+  //  Aqui temos um ótimo exemplo de como devemos passar um argumento na função.
+  // Caso queira analisar o argumento que é passado na função, você pode verificar a
+  // declaração da função. Veremos a seguir.
+  calculaImc(1.71, 73);
+  calculaImc(1.72, 68);
+
+  //  Aqui temos a declaração da função chamada anteriormente. Podemos verificar que ela recebe
+  // dois argumentos com os nomes 'altura' e 'peso'. Esses argumentos estão sendo utilizados para efetuar
+  // um cálculo com o objetivo de obter o imc(índice de massa coporal).
+  function calculaImc(altura, peso) {
     var imc = peso / (altura * altura);
     mostra("O imc calculado é " + imc);
-    }
-
-    calculaImc(1.71, 73);
-    calculaImc(1.72, 68);
-    
-
+  }
 </script>
