@@ -11,19 +11,26 @@
 
     var contador = 30;
 
-    while(contador <= 40) {
+    while (contador <= 40) {
 
-        if( contador == 33 ) {
-        contador = contador + 1;
+        //  A instrução 'if' é uma estrutura de execução caso uma condição seja verdadeira,
+        // a seguir ele verifica se o contador é igual a 33, caso seja verdadeira executa a 
+        // instrução seguinte.
+        if (contador == 33) {
+            // Executa o que estiver aqui dentro caso a condição resulte em verdadeiro.
+            contador = contador + 1;
         }
-        else if(contador == 37) {    
+        // Em caso da condição anterior resultar em falso entrará no bloco else que recebe outra condição;
+        else if (contador == 37) {
+            // Caso o contador seja igual a 37 retornará verdadeiro para a estrutura e entrará neste bloco.
             contador = contador + 1;
         }
         else {
-        mostra(contador);
-        contador = contador + 1; 
+            // Caso todas as condições retornem falso entrará neste bloco 'else'.
+            mostra(contador);
+            contador = contador + 1;
         }
-      }
+    }
 
     mostra("FIM");
 

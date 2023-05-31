@@ -1,16 +1,34 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 
 <h3>Álcool ou Gasolina?</h3>
 
 <script>
-	var tanque=40;
-	var caminhoGasolina=480;
-	var consumoGasolina= caminhoGasolina/tanque;
+  //  Aqui temos o uso de algumas variáveis e também
+  // operações matemáticas.
 
-	var caminhoAlcool=300;
-	var consumoAlcool=caminhoAlcool/tanque;
-	
-	document.write("O consumo de gasolina é "+ consumoGasolina+" km/L");
-	document.write("<br>");
-	document.write("O consumo de álcool é "+consumoAlcool+" km/L");
+  var tanque = 40;
+  var caminhoGasolina = 480;
+
+  //  Variável que recebe uma operação matemática
+  // dividindo o 'caminhoGasolina' por 'tanque' para
+  // calular o consumo de gasolina.
+  var consumoGasolina = caminhoGasolina / tanque;
+
+  var caminhoAlcool = 300;
+
+  //  O mesmo ocorre aqui(conforme descrito anteriormente),
+  // sendo utilizado a variável 'caminhoAlcool'
+  // no lugar de 'caminhoGasolina'.
+  var consumoAlcool = caminhoAlcool / tanque;
+
+  //  No arquivo a_soma_das_idades.html, descrevi como funciona esta
+  // mesma instrução.
+  document.write("O consumo de gasolina é " + consumoGasolina + " km/L");
+  document.write("<br>");
+  document.write("O consumo de álcool é " + consumoAlcool + " km/L");
+
+  //  Na execução do código ele irá retornar na página o seguinte texto:
+  //
+  // O consumo de gasolina é 12 km/L
+  // O consumo de álcool é 7.5 km/L
 </script>

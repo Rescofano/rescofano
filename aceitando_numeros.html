@@ -1,3 +1,48 @@
-for( var i = 0; i < 10; i++ ) {
-    alert( "O resultado é " + (2 * i) );
-}
+<meta charset="UTF-8" />
+
+<script>
+  //  O que será que temos aqui?
+
+  //  Bom Regina para começar neste código temos uma estrutura
+  // de repetição cuja definição segue a seguir:
+  // _____
+  // A instrução 'for' cria um loop que consiste em três expressões
+  // opcionais, dentro de parênteses e separadas por ponto e vírgula,
+  // seguidas por uma declaração ou uma sequência de declarações
+  // executadas em sequência.
+  // _____
+
+  //  Exemplo detalhado:
+
+  // for ([inicialização]; [condição]; [expressão final]) { ---> sempre abra corretamente as chaves
+  //
+  //    ---> Aqui é o bloco do for ficam as intruções que serão repetidas <---
+  //
+  // } ---> sempre feche corretamente as chaves
+
+  for (var i = 0; i < 10; i++) {
+    alert("O resultado é " + 2 * i); // Ele abre uma caixa de mensagem do navegador dez vezes com o resultado do cálculo(varia de acordo com a variável 'i').
+  }
+
+  //  O código está correto e sem problemas,
+  // ele inicia uma variável 'var' tendo o nome dela como
+  // 'i' de valor inicial 0. Com a condição de que se 'i' for
+  // menor do que 10 ele executa o código dentro do bloco for. E
+  // na expressão final ele usa uma expressão 'i++'.
+
+  //  A expressão 'i++' é o mesmo que você digitar
+  // 'i = i + 1'. Bom caso não tenha ficado claro, darei uma valor
+  // imaginário a variável 'i' para esclarecimento.
+
+  // var i = 10;
+  //
+  // i = i + 1 ==[é o mesmo que]==> i = 10 + 1;
+  //
+  //  Então a operação que foi executada no código abaixo 'i++',
+  // significa que ele vai pegar o valor que tiver em 'i' no momento
+  // e adicionar mais 1;
+
+  //  Cada vez que uma repetição passar, ele adiciona +1 a variável
+  // 'i' até que a condição 'i < 10' retorne falso, que é quando a
+  // repetição termina.
+</script>
