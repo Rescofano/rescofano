@@ -1,35 +1,328 @@
-<meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="pt-Br">
 
-<script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Alura</title>
+    <style>
+        :root {
+            --color-alura: rgba(40, 40, 207, 0.776);
+            --color-font: white;
+            --bg-color: slategray;
+            --bg-color-black-transparent: rgba(0, 0, 0, 0.178);
+        }
 
-    var loginCadastrado = "alura";
-    var senhaCadastrada = "alura321";
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
-    var maximoTentativas = 3;
-    var tentativaAtual = 1;
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: var(--color-font);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-color);
+        }
 
-    while(tentativaAtual <= maximoTentativas) {
+        @keyframes stretchIn {
+            from {
+                transform: scale(1.5);
+                opacity: 0;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
 
-        var loginInformado = prompt("Informe seu login");
-        var senhaInformada = prompt("Informe sua senha");
-
-        if( loginCadastrado == loginInformado && senhaCadastrada == senhaInformada ) {
-
-            alert("Bem-vindo ao sistema, " + loginInformado);
-
-            tentativaAtual = maximoTentativas; // acertou, então faço o gasto de todas as tentativas para sair do loop. Lá embaixo vai incrementar + 1! 
-
-        } else {
-
-            if (tentativaAtual == 3) {
-                alert("Número permitido de tentativas ultrapassado!");
-            } else {
-                alert("Login inválido. Tente novamente");
+            to {
+                transform: scale(1);
+                opacity: 1;
+                margin-top: 10;
+                margin-bottom: 10;
             }
         }
 
-       // vai para a próxima tentativa
-        tentativaAtual = tentativaAtual +1  
-    }
+        @keyframes stretchOut {
+            from {
+                transform: scale(1);
+                opacity: 1;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
 
-</script>
+            to {
+                transform: scale(1.5);
+                opacity: 0;
+                margin-top: 10;
+                margin-bottom: 10;
+            }
+        }
+
+        #resposta {
+            display: none;
+            background-color: var(--bg-color-black-transparent);
+            padding: 2rem;
+            border: solid 1px white;
+            border-radius: 1.3rem;
+        }
+
+        #resposta.mostrar {
+            animation: stretchIn 500ms;
+            animation-timing-function: ease-in-out;
+            margin-top: 10;
+            margin-bottom: 10;
+        }
+
+        #resposta.esconder {
+            animation: stretchOut 500ms;
+            animation-timing-function: ease-in-out;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .container {
+            display: flex;
+            background-color: var(--bg-color-black-transparent);
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem;
+            margin: 1rem;
+            border: solid 1px;
+            border-radius: 1.3rem;
+        }
+
+        .container-input {
+            width: 100%;
+
+            >div {
+                margin-bottom: 0.2rem;
+                font-weight: bold;
+                margin-right: 5px;
+                text-align: start;
+            }
+        }
+
+        .container-button {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+        }
+
+        input {
+            appearance: none;
+            background-color: rgba(0, 0, 0, 0.178);
+            outline: none;
+            border: solid 2px var(--color-font);
+            border-radius: 1.3rem;
+            height: 50px;
+            margin: 0.5rem;
+            padding: 10px;
+            color: currentColor;
+            font-weight: bold;
+            font-size: medium;
+            text-align: center;
+        }
+
+        input::placeholder {
+            text-align: center;
+            font-weight: 500;
+            color: rgb(185, 182, 182);
+        }
+
+        button {
+            appearance: none;
+            background-color: var(--color-alura);
+            color: currentColor;
+            min-width: 200px;
+            margin: 0.5rem;
+            padding: 20px;
+            border: none;
+            border-radius: 1.3rem;
+            font-weight: bold;
+            font-size: 17px;
+            transition: all;
+            transition-duration: 200ms;
+            transition-timing-function: ease;
+        }
+
+        button:active {
+            background-color: rgba(34, 34, 174, 0.776);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bem-vindo a Alura!</h1>
+    <div id="resposta"></div>
+    <form id="meuForm" class="container">
+        <div class="container-input">
+            <label for="loginInformado">Login:</label>
+            <input type="text" placeholder="digite seu login aqui" id="loginInformado" />
+        </div>
+        <div class="container-input">
+            <label for="senhaInformada">Senha:</label>
+            <input type="password" placeholder="digite sua senha aqui" id="senhaInformada" />
+        </div>
+        <div class="container-button">
+            <button id="logar" type="submit">Logar</button>
+        </div>
+    </form>
+
+    <script>
+        //  Aqui temos uma lógica para efetuar um login na página.
+
+        //  Aqui temos variáveis que armazenam o login e senha que serão usados para acessar o sistema.
+        var loginCadastrado = "alura";
+        var senhaCadastrada = "alura321";
+
+        //  Essas próximas armazenam a quantidade de vezes que o usuário pode tentar acessar o sistema 
+        var maximoTentativas = 3;
+        var tentativaAtual = 1;
+
+        //  Bom a partir daqui eu fiz algumas mudanças no código que você deixou.
+        // Essas próximas variáveis armazenam alguns componentes do documento. Dessa forma
+        // podemos manipular os elementos pelo próprio javascript. Eu decidi adicionar essa parte
+        // para poder mostrar como podemos usar isso no documento html.
+
+        //  Aqui armazenei as seguintes tags do documento:
+        var resposta = document.querySelector('#resposta'); // - <div class="container-input"> ---->  que pode ser localizar na linha 166 do documento.
+        var meuForm = document.querySelector('#meuForm'); // - <form id="meuForm" class="container"> ----> se localiza na linha 167 e termina na linha 179.
+        var login = document.querySelector("#loginInformado"); // - <input type="text" placeholder="digite seu login aqui" id="loginInformado" /> ----> se localiza na linha 170.
+        var senha = document.querySelector("#senhaInformada"); // - <input type="password" placeholder="digite sua senha aqui" id="senhaInformada" /> ----> se localiza na linha 174.
+
+        meuForm.addEventListener('submit', logar); //  Nesta linha  de código estou adicionando o evento 'logar' no formulário do documento. Logo mais a frente veremos como a função 'logar' funciona.  
+
+        window.onload = () => login.focus(); //  Aqui nesta linha eu informo ao navegador que quando o site carregar dar foco na primeira caixa de entrada da página(caixa de login).
+
+        //  Eu sei que pode estar um pouco confuso tanta informação no documento, mas é bom ver como funciona um
+        // código na realidade.
+        //  Caso tenha alguma dúvida é só anotar e me chamar depois.
+
+        var activeFunction = false;
+        //  Chegamos na função que executa o login do usuário.
+
+        //  Aqui é onde a maior parte do código trabalha. Toda vez que o usuário tentar acessar o sistema entrará nessa função.
+        function logar(event) {
+            event.preventDefault();
+            //  Para começar eu busco aqui os valores que foram inseridos na caixa de texto na tela.
+            //  Respectivamente login e senha do usuário:
+            var loginValue = login.value;
+            var senhaValue = senha.value;
+
+            //  Aqui eu utilizo a mesma lógica que já constava no documento. Porém eu adiciono mais
+            // algumas informações, vamos dar uma olhada.
+
+            //  Entramos na condição do 'if', caso seja verdadeira entrará no bloco 'if' seguinte.
+            if (tentativaAtual == maximoTentativas) {
+                //  A condição acima somente será verdadeira, se a 'tentativaAtual' for igual ao 'maximoTentativas'. 
+
+                //  Aqui dentro estou manipulando o componente resposta da nossa página. Assim consigo dar uma 
+                // reposta ao usuário.
+
+                //  Vou pedir para ignorar as próximas linhas pois elas são somente estilização que fiz para
+                // deixar a tela um pouco mais bonitinha.
+
+                // IGNORE DAQUI
+                resposta.style.display = 'block';
+                resposta.classList.remove('esconder');
+                resposta.classList.add('mostrar');
+                resposta.style.color = 'red';
+                // IGNORE ATÉ AQUI
+
+                //  Aqui eu adiciono uma frase, informando ao usuário que ele precisa recarregar a página caso o número
+                // de tentativas tenha chegado no limite.
+                resposta.textContent = 'Recarregue a página para tentar novamente.';
+                //  E por fim eu adiciono uma instrução 'return', para dar fim a execução desta função.
+                return;
+            }
+
+            if (loginValue === loginCadastrado && senhaValue === senhaCadastrada) {
+                //  Entrará nesta linha caso a condição acima seja verdadeira, ou seja
+                // quando o usuário colocar a informação de 'loginValue' e 'senhaValue'
+                // iguais a 'loginCadastrado' e 'senhaCadastrada'. Ou seja se o login for feito corretamente.
+
+                //  IGNORE DAQUI
+                resposta.style.display = 'block';
+                resposta.classList.remove('esconder');
+                resposta.classList.add('mostrar');
+                resposta.style.color = 'currentColor';
+                //  IGNORE ATÉ AQUI
+                
+                //  E mostro na tela que tudo deu certo.
+                resposta.textContent = 'Logado com sucesso.';
+            } else {
+                //  IGNORE DAQUI
+                resposta.style.display = 'block';
+                resposta.classList.remove('esconder');
+                resposta.classList.add('mostrar');
+                resposta.style.color = 'red';
+                //  IGNORE ATÉ AQUI
+
+                //  Já se o usuário informa a senha incorretamente eu mostro uma mensagem
+                // informando que os dados fornecidos estão incorretos e peço que tente novamente. 
+                resposta.textContent = 'Informações de login e senha incorretos. Tente novamente.';
+
+                //  Já que foi uma tentativa falha, adiciono +1 a variável 'tentativaAtual'. Lembrando
+                // que se chegar a 3 tentativas falhas, ele terá que começar tudo de novo.
+                tentativaAtual++;
+            }
+
+            //  Esta próxima lógica eu vou deixar para explicar mais para frente.
+            if (!activeFunction) {
+                activeFunction = true;
+                setTimeout(() => {
+                    resposta.classList.remove('mostrar');
+                    resposta.classList.add('esconder');
+                    setTimeout(() => {
+                        resposta.style.display = 'none';
+                        resposta.textContent = '';
+                    }, 200)
+                    activeFunction = false;
+                }, 4000)
+            }
+        }
+
+        //  COMENTEI TODA A LÓGICA ANTERIOR MAS NÃO DELETEI CASO QUEIRA CONSULTAR COMO ESTAVA ANTES.
+
+        // while (tentativaAtual <= maximoTentativas) {
+
+        //     //  A entrada de dados utilizada é o prompt do navegador.
+        //     // var loginInformado = prompt("Informe seu login");
+        //     // var senhaInformada = prompt("Informe sua senha");
+
+        //     if (loginCadastrado == loginInformado && senhaCadastrada == senhaInformada) {
+
+        //         //  O alert também é uma caixa de aviso do navegador.
+        //         alert("Bem-vindo ao sistema, " + loginInformado);
+
+        //         tentativaAtual = maximoTentativas;
+
+        //     } else {
+
+        //         if (tentativaAtual == 3) {
+        //             alert("Número permitido de tentativas ultrapassado!");
+        //         } else {
+        //             alert("Login inválido. Tente novamente");
+        //         }
+        //     }
+
+        //     // vai para a próxima tentativa
+        //     tentativaAtual = tentativaAtual + 1
+        // }
+
+    </script>
+</body>
+
+</html>
+
+<meta charset="UTF-8">
